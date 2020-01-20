@@ -11,24 +11,11 @@ class GenresController < ApplicationController
 		@genre = Genre.new
 	end
 
- 
-	# def create
-	# 	@post = Post.new(params.require(:post).permit(:title, :description))
-	# 	@post.save
-	# 	redirect_to post_path(@post)
-	#   end
-	   
 	def create
 		@genre= Genre.new(genre_params(:name))
-		@genre.save
+        @genre.save
 		redirect_to genre_path(@genre)
 	  end
-
-	#   def update
-	# 	@post = Post.find(params[:id])
-	# 	@post.update(params.require(:post).permit(:title))
-	# 	redirect_to post_path(@post)
-	#   end
 
 	def update
 		@genre = Genre.find(params[:id])
@@ -52,10 +39,10 @@ class GenresController < ApplicationController
 
 	 
 def genre_params(*args)
-	params.require(:post).permit(*args)
+	params.require(:genre).permit(*args)
 end
 end
 
  
 
-end
+

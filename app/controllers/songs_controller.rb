@@ -5,18 +5,15 @@ class SongsController < ApplicationController
 
 	def show
 		@song =Song.find(params[:id])
+		@artist = Artist.find(@song.artist_id)
+		@genre = Genre.find(@song.genre_id)
 	end
 
 	def new
 		@song = Song.new
+	
 	end
 
- 
-	# def create
-	# 	@post = Post.new(params.require(:post).permit(:title, :description))
-	# 	@post.save
-	# 	redirect_to post_path(@post)
-	#   end
 	   
 	def create
 		@song = Song.new(song_params(:name, :artist_id, :genre_id))
@@ -24,11 +21,6 @@ class SongsController < ApplicationController
 		redirect_to song_path(@song)
 	  end
 
-	#   def update
-	# 	@post = Post.find(params[:id])
-	# 	@post.update(params.require(:post).permit(:title))
-	# 	redirect_to post_path(@post)
-	#   end
 
 	def update
 		@song = Song.find(params[:id])
@@ -38,6 +30,7 @@ class SongsController < ApplicationController
 	  
 	def edit
 	  @song = Song.find(params[:id])
+	  
 	end
 
 	private
@@ -52,10 +45,9 @@ class SongsController < ApplicationController
 
 	 
 def song_params(*args)
-	params.require(:post).permit(*args)
+	params.require(:song).permit(*args)
 end
 end
 
  
 
-end
